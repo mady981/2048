@@ -316,6 +316,17 @@ void Graphics::PutPixel( int x,int y,Color c )
 	pSysBuffer[Graphics::ScreenWidth * y + x] = c;
 }
 
+void Graphics::DrawRec( const RecI rec,Color c )
+{
+	for ( int y = rec.top + 1; y < rec.bottem - 1; ++y )
+	{
+		for ( int x = rec.left + 1; x < rec.right - 1; ++x )
+		{
+			PutPixel( x,y,c );
+		}
+	}
+}
+
 void Graphics::DrawSpriteNoChroma( int x,int y,RecI srcRect,const RecI& clip,const Surface& s )
 {
 	if ( x < clip.left )

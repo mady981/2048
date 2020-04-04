@@ -60,6 +60,7 @@ public:
 		PutPixel( x,y,{ unsigned char( r ),unsigned char( g ),unsigned char( b ) } );
 	}
 	void PutPixel( int x,int y,Color c );
+	void DrawRec( const RecI rec,Color c );
 
 	void DrawSpriteNoChroma( int x,int y,const Surface& s )
 	{
