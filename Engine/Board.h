@@ -10,27 +10,26 @@ private:
 	class Tile
 	{
 	public:
-		Tile( const Vec2i& pos );
-		void Move();
-		void Draw();
+		Tile( const Vec2i& pos,const int val );
+		void Move( const Vec2i& dir );
+		void Advance();
+		void Draw( Graphics& gfx) const;
 		Vec2i getpos() const;
-		Vec2i setpos( const Vec2i& val );
 	private:
-		Vec2_<int> pos;
+		Vec2i pos;
+		int value = 0;
 	};
 public:
-	Board( std::random_device& rng );
-	void Move();
-	void Draw();
+	Board( std::mt19937& rng );
+	void Move( const Vec2i& dir );
+	void Draw( Graphics& gfx ) const;
 private:
-	void AddTile();
+	void AddTile( std::mt19937& rng );
 private:
 	static constexpr int TileSize = 128;
 	static constexpr int width = 4;
 	static constexpr int height = 4;
-	int nTiles = 2;
 private:
-	std::random_device& rng;
 	std::vector<Tile> tiles;
-	bool istile[width * height] = { false };
+	std::mt19937& rng;
 };
