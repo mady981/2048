@@ -39,7 +39,5 @@ private:
 private:
 	MainWindow& wnd;
 	Graphics gfx;
-    std::random_device rd;
-    std::mt19937 rng;
     Board brd;
 };

@@ -316,11 +316,11 @@ void Graphics::PutPixel( int x,int y,Color c )
 	pSysBuffer[Graphics::ScreenWidth * y + x] = c;
 }
 
-void Graphics::DrawRec( const RecI rec,Color c )
+void Graphics::DrawRec( const Vec2i& topleft,const Vec2i& bottemright,Color c )
 {
-	for ( int y = rec.top; y < rec.bottem; ++y )
+	for ( int y = topleft.y; y < bottemright.y; ++y )
 	{
-		for ( int x = rec.left; x < rec.right; ++x )
+		for ( int x = topleft.x; x < bottemright.x; ++x )
 		{
 			PutPixel( x,y,c );
 		}

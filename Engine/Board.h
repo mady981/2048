@@ -11,25 +11,26 @@ private:
 	{
 	public:
 		Tile( const Vec2i& pos,const int val );
-		void Move( const Vec2i& dir );
+		//void Move( const Vec2i& dir );
 		void Advance();
-		void Draw( Graphics& gfx) const;
+		void Draw( Graphics& gfx,const Vec2i& gridpos ) const;
 		Vec2i getpos() const;
 	private:
 		Vec2i pos;
 		int value = 0;
 	};
 public:
-	Board( std::mt19937& rng );
-	void Move( const Vec2i& dir );
+	Board();
+	//void Move( const Vec2i& dir );
 	void Draw( Graphics& gfx ) const;
+	void DrawBoarder( Graphics& gfx ) const;
+	void AddTile();
 private:
-	void AddTile( std::mt19937& rng );
-private:
-	static constexpr int TileSize = 128;
+	static constexpr int TileSize = 64;
 	static constexpr int width = 4;
 	static constexpr int height = 4;
+	const Vec2i gridpos = Vec2i( Graphics::ScreenWidth / 2 - 2 * TileSize,Graphics::ScreenHeight / 2 - 2 * TileSize );
 private:
 	std::vector<Tile> tiles;
-	std::mt19937& rng;
+	std::mt19937 rng;
 };
