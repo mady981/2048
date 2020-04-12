@@ -40,4 +40,6 @@ private:
 	MainWindow& wnd;
 	Graphics gfx;
     Board brd;
+    Vec2i dir = { 0,0 };
+    bool ispressed = false;
 };

@@ -20,6 +20,7 @@
  ******************************************************************************************/
 #include "MainWindow.h"
 #include "Game.h"
+#include <assert.h>
 
 Game::Game( MainWindow& wnd )
 	:
@@ -38,6 +39,30 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+    if ( wnd.kbd.KeyIsPressed( VK_UP ) )
+    {
+        dir = { 0,-1 };
+    }
+    else if ( wnd.kbd.KeyIsPressed( VK_DOWN ) )
+    {
+        dir = { 0,1 };
+    }
+    else if ( wnd.kbd.KeyIsPressed( VK_LEFT ) )
+    {
+        dir = { -1,0 };
+    }
+    else if ( wnd.kbd.KeyIsPressed( VK_RIGHT ) )
+    {
+        dir = { 1,0 };
+    }
+    else
+    {
+        dir = { 0,0 };
+    }
+    if ( dir != Vec2i( 0,0 ) )
+    {
+        brd.Move( dir );
+    }
 }
 
 void Game::ComposeFrame()

@@ -11,17 +11,18 @@ private:
 	{
 	public:
 		Tile( const Vec2i& pos,const int val );
-		//void Move( const Vec2i& dir );
+		void Move( const Vec2i& dir );
 		void Advance();
 		void Draw( Graphics& gfx,const Vec2i& gridpos ) const;
 		Vec2i getpos() const;
+		Vec2i nextpos( const Vec2i& dir ) const;
 	private:
 		Vec2i pos;
-		int value = 0;
+		int value;
 	};
 public:
 	Board();
-	//void Move( const Vec2i& dir );
+	void Move( const Vec2i& dir );
 	void Draw( Graphics& gfx ) const;
 	void DrawBoarder( Graphics& gfx ) const;
 	void AddTile();

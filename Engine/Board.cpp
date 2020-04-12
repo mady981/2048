@@ -1,4 +1,5 @@
 #include "Board.h"
+#include <iterator>
 
 Board::Board()
 	:
@@ -8,6 +9,34 @@ Board::Board()
 	AddTile();
 	AddTile();
 	AddTile();
+}
+
+void Board::Move( const Vec2i& dir )
+{
+	for ( int i = 0; i < tiles.size(); ++i )
+	{
+		bool ok = true;
+		while ( ok )
+		{
+			Vec2i next = tiles[i].nextpos( dir );
+			for ( int n = 0; n < tiles.size(); ++n )
+			{
+				if ( next.x < 0 || next.x >= width || next.y < 0 || next.y >= height || next == tiles[n].getpos() )
+				{
+					if ( next == tiles[n].getpos() )
+					{
+						tiles.erase( tiles.begin() + n );
+					}
+					ok = false;
+					break;
+				}
+			}
+			if ( ok )
+			{
+				tiles[i].Move( dir );
+			}
+		}
+	}
 }
 
 void Board::Draw( Graphics& gfx ) const
@@ -67,6 +96,11 @@ Board::Tile::Tile( const Vec2i& pos,const int val )
 {
 }
 
+void Board::Tile::Move( const Vec2i& dir )
+{
+	pos += dir;
+}
+
 void Board::Tile::Advance()
 {
 	++value;
@@ -80,4 +114,9 @@ void Board::Tile::Draw( Graphics& gfx,const Vec2i& gridpos ) const
 Vec2i Board::Tile::getpos() const
 {
 	return( pos );
+}
+
+Vec2i Board::Tile::nextpos( const Vec2i& dir ) const
+{
+	return Vec2i( pos + dir );
 }
