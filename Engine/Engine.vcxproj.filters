@@ -152,5 +152,14 @@
     <Image Include="Gitter.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="128.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="256.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="64.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

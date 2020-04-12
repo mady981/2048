@@ -237,10 +237,13 @@
     <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="128.bmp" />
     <Image Include="16.bmp" />
     <Image Include="2.bmp" />
+    <Image Include="256.bmp" />
     <Image Include="32.bmp" />
     <Image Include="4.bmp" />
+    <Image Include="64.bmp" />
     <Image Include="8.bmp" />
     <Image Include="Chili.ico" />
     <Image Include="Gitter.bmp" />
