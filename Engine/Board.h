@@ -1,6 +1,7 @@
 #pragma once
 #include "Graphics.h"
 #include "Vec2.h"
+#include "SpriteCodex.h"
 #include <vector>
 #include <random>
 
@@ -13,7 +14,7 @@ private:
 		Tile( const Vec2i& pos,const int val );
 		void Move( const Vec2i& dir );
 		void Advance();
-		void Draw( Graphics& gfx,const Vec2i& gridpos ) const;
+		void Draw( const Vec2i& gridpos,Graphics& gfx,SpriteCodex& sc ) const;
 		Vec2i getpos() const;
 		Vec2i nextpos( const Vec2i& dir ) const;
 		int getvalue() const;
@@ -24,8 +25,8 @@ private:
 public:
 	Board();
 	void Move( const Vec2i& dir );
-	void Draw( Graphics& gfx ) const;
-	void DrawBoarder( Graphics& gfx ) const;
+	void Draw( Graphics& gfx,SpriteCodex& sc ) const;
+	void DrawBoarder( Graphics& gfx,SpriteCodex& sc ) const;
 	void AddTile();
 private:
 	static constexpr int TileSize = 64;

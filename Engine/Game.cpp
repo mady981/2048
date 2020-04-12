@@ -69,6 +69,6 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-    brd.DrawBoarder( gfx );
-    brd.Draw( gfx );
+    brd.DrawBoarder( gfx,sc );
+    brd.Draw( gfx,sc );
 }

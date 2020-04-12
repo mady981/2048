@@ -3,7 +3,7 @@
 #include <assert.h>
 #include <fstream>
 
-Surface::Surface( const std::string& filename )
+Surface::Surface( const std::wstring& filename )
 {
 	std::ifstream file( filename,std::ios::binary );
 	BITMAPFILEHEADER bmfileheader;

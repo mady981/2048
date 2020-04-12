@@ -152,6 +152,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SoundEffect.h" />
+    <ClInclude Include="SpriteCodex.h" />
     <ClInclude Include="Surface.h" />
     <ClInclude Include="Vec2.h" />
   </ItemGroup>
@@ -167,6 +168,7 @@
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="SpriteCodex.cpp" />
     <ClCompile Include="Surface.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -241,6 +243,7 @@
     <Image Include="4.bmp" />
     <Image Include="8.bmp" />
     <Image Include="Chili.ico" />
+    <Image Include="Gitter.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

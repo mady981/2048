@@ -39,6 +39,7 @@ private:
 private:
 	MainWindow& wnd;
 	Graphics gfx;
+    SpriteCodex sc;
     Board brd;
     Vec2i dir = { 0,0 };
     bool ispressed = false;

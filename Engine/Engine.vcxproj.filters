@@ -72,6 +72,9 @@
     <ClInclude Include="Board.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SpriteCodex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DXErr.cpp">
@@ -110,6 +113,9 @@
     <ClCompile Include="Board.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SpriteCodex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="FramebufferPS.hlsl">
@@ -141,6 +147,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="32.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Gitter.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
