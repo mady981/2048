@@ -5,8 +5,7 @@ Board::Board()
 	:
 	rng( std::random_device()() )
 {
-	AddTile();
-	AddTile();
+	tiles.reserve( width * height );
 	AddTile();
 	AddTile();
 }
@@ -23,9 +22,10 @@ void Board::Move( const Vec2i& dir )
 			{
 				if ( next.x < 0 || next.x >= width || next.y < 0 || next.y >= height || next == tiles[n].getpos() )
 				{
-					if ( next == tiles[n].getpos() )
+					if ( next == tiles[n].getpos() && tiles[i].getvalue() == tiles[n].getvalue() )
 					{
-						tiles.erase( tiles.begin() + n );
+						tiles[n].Advance();
+						tiles.erase( tiles.begin() + i );
 					}
 					ok = false;
 					break;
@@ -37,6 +37,7 @@ void Board::Move( const Vec2i& dir )
 			}
 		}
 	}
+	AddTile();
 }
 
 void Board::Draw( Graphics& gfx ) const
@@ -119,4 +120,9 @@ Vec2i Board::Tile::getpos() const
 Vec2i Board::Tile::nextpos( const Vec2i& dir ) const
 {
 	return Vec2i( pos + dir );
+}
+
+int Board::Tile::getvalue() const
+{
+	return value;
 }

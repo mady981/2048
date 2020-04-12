@@ -58,10 +58,12 @@ void Game::UpdateModel()
     else
     {
         dir = { 0,0 };
+        ispressed = false;
     }
-    if ( dir != Vec2i( 0,0 ) )
+    if ( dir != Vec2i( 0,0 ) && !ispressed )
     {
         brd.Move( dir );
+        ispressed = true;
     }
 }
 

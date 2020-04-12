@@ -246,3 +246,8 @@ ModelManifest.xml
 
 # Precompiled Shader Header Files
 *.shh
+/Engine/8.bmp
+/Engine/4.bmp
+/Engine/32.bmp
+/Engine/2.bmp
+/Engine/16.bmp

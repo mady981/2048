@@ -16,6 +16,7 @@ private:
 		void Draw( Graphics& gfx,const Vec2i& gridpos ) const;
 		Vec2i getpos() const;
 		Vec2i nextpos( const Vec2i& dir ) const;
+		int getvalue() const;
 	private:
 		Vec2i pos;
 		int value;
