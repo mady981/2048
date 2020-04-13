@@ -116,7 +116,27 @@ void Board::AddTile()
 
 bool Board::CeckMovePossible() const
 {
-
+	bool MovePossible[4] = { false };
+	std::vector<Vec2i> dir = { Vec2i( 0,-1 ),Vec2i( 0,1 ),Vec2i( -1,0 ),Vec2i( 1,0 ) };
+	for ( int d = 0; d < dir.size(); ++d ) //diractions
+	{
+		for ( int t = 0; t < tiles.size(); ++t ) //tiles
+		{
+			Vec2i next = tiles[t].nextpos( { dir[d] } );
+			for ( int n = 0; n < tiles.size(); ++n ) //other tiles
+			{
+				if ( tiles[t].getvalue() == tiles[n].getvalue() )
+				{
+					MovePossible[d] = true;
+				}
+			}
+		}
+	}
+	if ( MovePossible == false )
+	{
+		return false;
+	}
+	return true;
 }
 
 Board::Tile::Tile( const Vec2i& pos,const int val )
