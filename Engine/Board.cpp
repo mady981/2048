@@ -1,5 +1,6 @@
 #include "Board.h"
 #include <iterator>
+#include <assert.h>
 
 Board::Board()
 	:
@@ -12,32 +13,61 @@ Board::Board()
 
 void Board::Move( const Vec2i& dir )
 {
-	for ( int i = 0; i < tiles.size(); ++i )
+	if ( tiles.size() == tiles.capacity() ? CeckMovePossible() : true )
 	{
-		bool ok = true;
-		while ( ok )
+		std::vector<int> eras;
+		if ( dir.x < 0 )
 		{
-			Vec2i next = tiles[i].nextpos( dir );
-			for ( int n = 0; n < tiles.size(); ++n )
+			std::sort( tiles.begin(),tiles.end(),customSmallerx );
+		}
+		else if ( dir.y < 0 )
+		{
+			std::sort( tiles.begin(),tiles.end(),customSmallery );
+		}
+		else if ( dir.x > 0 )
+		{
+			std::sort( tiles.begin(),tiles.end(),customGreaterx );
+		}
+		else if ( dir.y > 0 )
+		{
+			std::sort( tiles.begin(),tiles.end(),customGreatery );
+		}
+		for ( int i = 0; i < tiles.size(); ++i )
+		{
+			bool ok = true;
+			while ( ok )
 			{
-				if ( next.x < 0 || next.x >= width || next.y < 0 || next.y >= height || next == tiles[n].getpos() )
+				Vec2i next = tiles[i].nextpos( dir );
+				for ( int n = 0; n < tiles.size(); ++n )
 				{
-					if ( next == tiles[n].getpos() && tiles[i].getvalue() == tiles[n].getvalue() )
+					if ( next.x < 0 || next.x >= width || next.y < 0 || next.y >= height || next == tiles[n].getpos() )
 					{
-						tiles[n].Advance();
-						tiles.erase( tiles.begin() + i );
+						if ( next == tiles[n].getpos() && tiles[i].getvalue() == tiles[n].getvalue() )
+						{
+							tiles[n].Advance();
+							eras.emplace_back( i );
+						}
+						ok = false;
+						break;
 					}
-					ok = false;
-					break;
+				}
+				if ( ok )
+				{
+					tiles[i].Move( dir );
 				}
 			}
-			if ( ok )
+		}
+		eras.shrink_to_fit();
+		if ( eras.size() > 0 )
+		{
+			std::sort( eras.begin(),eras.end() );
+			for ( size_t i = eras.size() - 1; i < eras.size(); --i )
 			{
-				tiles[i].Move( dir );
+				tiles.erase( tiles.begin() + eras[i] );
 			}
 		}
+		AddTile();
 	}
-	AddTile();
 }
 
 void Board::Draw( Graphics& gfx,SpriteCodex& sc ) const
@@ -82,6 +112,11 @@ void Board::AddTile()
 		} while ( repeat );
 		tiles.emplace_back( Tile( rpos,rval ) );
 	}
+}
+
+bool Board::CeckMovePossible() const
+{
+
 }
 
 Board::Tile::Tile( const Vec2i& pos,const int val )

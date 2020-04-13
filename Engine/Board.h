@@ -29,6 +29,8 @@ public:
 	void DrawBoarder( Graphics& gfx,SpriteCodex& sc ) const;
 	void AddTile();
 private:
+	bool CeckMovePossible() const;
+private:
 	static constexpr int TileSize = 64;
 	static constexpr int width = 4;
 	static constexpr int height = 4;
@@ -36,4 +38,33 @@ private:
 private:
 	std::vector<Tile> tiles;
 	std::mt19937 rng;
+private:
+	struct
+	{
+		bool operator()( Tile a,Tile b )
+		{
+			return a.getpos().x > b.getpos().x;
+		}
+	} customGreaterx;
+	struct
+	{
+		bool operator()( Tile a,Tile b )
+		{
+			return a.getpos().y > b.getpos().y;
+		}
+	} customGreatery;
+	struct
+	{
+		bool operator()( Tile a,Tile b )
+		{
+			return a.getpos().x < b.getpos().x;
+		}
+	} customSmallerx;
+	struct
+	{
+		bool operator()( Tile a,Tile b )
+		{
+			return a.getpos().y < b.getpos().y;
+		}
+	} customSmallery;
 };
