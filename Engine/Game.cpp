@@ -69,6 +69,9 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-    brd.DrawBoarder( gfx,sc );
     brd.Draw( gfx,sc );
+    if ( brd.getGameOver() )
+    {
+        //daraw gameover
+    }
 }

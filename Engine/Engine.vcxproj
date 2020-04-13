@@ -247,6 +247,7 @@
     <Image Include="8.bmp" />
     <Image Include="Chili.ico" />
     <Image Include="Gitter.bmp" />
+    <Image Include="NewGame.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

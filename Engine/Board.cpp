@@ -15,45 +15,53 @@ void Board::Move( const Vec2i& dir )
 {
 	if ( tiles.size() == tiles.capacity() ? CeckMovePossible() : true )
 	{
+		bool dirvalid = false;
 		std::vector<int> eras;
 		if ( dir.x < 0 )
 		{
-			std::sort( tiles.begin(),tiles.end(),customSmallerx );
+			std::sort( tiles.begin(),tiles.end(),[]( Tile a,Tile b ) { return a.getpos().x < b.getpos().x; } );
 		}
 		else if ( dir.y < 0 )
 		{
-			std::sort( tiles.begin(),tiles.end(),customSmallery );
+			std::sort( tiles.begin(),tiles.end(),[]( Tile a,Tile b ) { return a.getpos().y < b.getpos().y; } );
 		}
 		else if ( dir.x > 0 )
 		{
-			std::sort( tiles.begin(),tiles.end(),customGreaterx );
+			std::sort( tiles.begin(),tiles.end(),[]( Tile a,Tile b ) { return a.getpos().x > b.getpos().x; } );
 		}
 		else if ( dir.y > 0 )
 		{
-			std::sort( tiles.begin(),tiles.end(),customGreatery );
+			std::sort( tiles.begin(),tiles.end(),[]( Tile a,Tile b ) { return a.getpos().y > b.getpos().y; } );
 		}
 		for ( int i = 0; i < tiles.size(); ++i )
 		{
-			bool ok = true;
-			while ( ok )
+			bool movepossibel = true;
+			while ( movepossibel )
 			{
 				Vec2i next = tiles[i].nextpos( dir );
 				for ( int n = 0; n < tiles.size(); ++n )
 				{
-					if ( next.x < 0 || next.x >= width || next.y < 0 || next.y >= height || next == tiles[n].getpos() )
+					if ( next.x < 0 || next.x >= width || next.y < 0 || next.y >= height )
 					{
-						if ( next == tiles[n].getpos() && tiles[i].getvalue() == tiles[n].getvalue() )
+						movepossibel = false;
+						break;
+					}
+					else if ( next == tiles[n].getpos() )
+					{
+						if ( tiles[i].getvalue() == tiles[n].getvalue() )
 						{
 							tiles[n].Advance();
 							eras.emplace_back( i );
+							break;
 						}
-						ok = false;
+						movepossibel = false;
 						break;
 					}
 				}
-				if ( ok )
+				if ( movepossibel )
 				{
 					tiles[i].Move( dir );
+					dirvalid = true;
 				}
 			}
 		}
@@ -66,12 +74,20 @@ void Board::Move( const Vec2i& dir )
 				tiles.erase( tiles.begin() + eras[i] );
 			}
 		}
-		AddTile();
+		if ( dirvalid )
+		{
+			AddTile();
+		}
+	}
+	else
+	{
+		GameOver = true;
 	}
 }
 
 void Board::Draw( Graphics& gfx,SpriteCodex& sc ) const
 {
+	DrawBoarder( gfx,sc );
 	for ( int i = 0; i < tiles.size(); ++i )
 	{
 		tiles[i].Draw( gridpos,gfx,sc );
@@ -125,18 +141,23 @@ bool Board::CeckMovePossible() const
 			Vec2i next = tiles[t].nextpos( { dir[d] } );
 			for ( int n = 0; n < tiles.size(); ++n ) //other tiles
 			{
-				if ( tiles[t].getvalue() == tiles[n].getvalue() )
+				if ( tiles[t].getpos() == next && tiles[t].getvalue() == tiles[n].getvalue() )
 				{
 					MovePossible[d] = true;
 				}
 			}
 		}
 	}
-	if ( MovePossible == false )
+	if ( MovePossible[0,1,2,3] == false )
 	{
 		return false;
 	}
 	return true;
+}
+
+bool Board::getGameOver() const
+{
+	return GameOver;
 }
 
 Board::Tile::Tile( const Vec2i& pos,const int val )

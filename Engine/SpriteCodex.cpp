@@ -20,4 +20,9 @@ void SpriteCodex::DrawNumbers( const Vec2i& pos,const int num,Graphics& gfx ) co
 void SpriteCodex::DrawGrid( const Vec2i& gridpos,Graphics& gfx ) const
 {
 	gfx.DrawSpriteNoChroma( gridpos.x,gridpos.y,grid );
+	gfx.DrawSprite( gridpos.x,gridpos.y - 35,newgame );
+}
+
+void SpriteCodex::DrawGameOver( const Vec2i& gridpos,Graphics& gfx ) const
+{
 }
