@@ -32,7 +32,26 @@ private:
 	void AddTile();
 	bool CeckMovePossible() const;
 public:
-	bool getGameOver() const;
+	bool getGameOver() const
+	{
+		return GameOver;
+	}
+	Vec2i getgridpos() const
+	{
+		return Vec2i( gridpos );
+	}
+	int getTileSize() const
+	{
+		return TileSize;
+	}
+	int getwidth() const
+	{
+		return width;
+	}
+	int getheight() const
+	{
+		return height;
+	}
 private:
 	static constexpr int TileSize = 64;
 	static constexpr int width = 4;

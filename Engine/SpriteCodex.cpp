@@ -25,4 +25,5 @@ void SpriteCodex::DrawGrid( const Vec2i& gridpos,Graphics& gfx ) const
 
 void SpriteCodex::DrawGameOver( const Vec2i& gridpos,Graphics& gfx ) const
 {
+	gfx.DrawSprite( gridpos.x,gridpos.y,gameover );
 }

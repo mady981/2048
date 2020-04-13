@@ -164,5 +164,11 @@
     <Image Include="NewGame.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="GameOver.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="GameOver2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

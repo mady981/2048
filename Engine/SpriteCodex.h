@@ -15,4 +15,5 @@ private:
 	std::vector<Surface> sprite;
 	Surface grid = Surface( L"Gitter.bmp" );
 	Surface newgame = Surface( L"NewGame.bmp" );
+	Surface gameover = Surface( L"GameOver2.bmp" );
 };

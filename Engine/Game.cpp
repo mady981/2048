@@ -72,6 +72,6 @@ void Game::ComposeFrame()
     brd.Draw( gfx,sc );
     if ( brd.getGameOver() )
     {
-        //daraw gameover
+        sc.DrawGameOver( brd.getgridpos(),gfx );
     }
 }

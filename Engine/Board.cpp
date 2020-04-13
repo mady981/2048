@@ -155,11 +155,6 @@ bool Board::CeckMovePossible() const
 	return true;
 }
 
-bool Board::getGameOver() const
-{
-	return GameOver;
-}
-
 Board::Tile::Tile( const Vec2i& pos,const int val )
 	:
 	pos( pos ),

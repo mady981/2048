@@ -327,6 +327,15 @@ void Graphics::DrawRec( const Vec2i& topleft,const Vec2i& bottemright,Color c )
 	}
 }
 
+Color Graphics::getPixel( int x,int y ) const
+{
+	assert( x >= 0 );
+	assert( x < int( Graphics::ScreenWidth ) );
+	assert( y >= 0 );
+	assert( y < int( Graphics::ScreenHeight ) );
+	return pSysBuffer[Graphics::ScreenWidth * y + x];
+}
+
 void Graphics::DrawSpriteNoChroma( int x,int y,RecI srcRect,const RecI& clip,const Surface& s )
 {
 	if ( x < clip.left )
