@@ -39,6 +39,7 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+    //dir imputs
     if ( wnd.kbd.KeyIsPressed( VK_UP ) )
     {
         dir = { 0,-1 };
@@ -58,20 +59,32 @@ void Game::UpdateModel()
     else
     {
         dir = { 0,0 };
-        ispressed = false;
+        keypressed = false;
     }
-    if ( dir != Vec2i( 0,0 ) && !ispressed )
+    if ( dir != Vec2i( 0,0 ) && !keypressed )
     {
-        brd.Move( dir );
-        ispressed = true;
+        brd->Move( dir );
+        keypressed = true;
+    }
+    //new game button
+    if ( newgame.isOverlappingWith( wnd.mouse.GetPos() ) && wnd.mouse.LeftIsPressed() && !mousepressed )
+    {
+        mousepressed = true;
+        delete brd;
+        brd = new Board;
+    }
+    const Mouse::Event e = wnd.mouse.Read();
+    if ( e.GetType() == Mouse::Event::Type::LRelease )
+    {
+        mousepressed = false;
     }
 }
 
 void Game::ComposeFrame()
 {
-    brd.Draw( gfx,sc );
-    if ( brd.getGameOver() )
+    brd->Draw( gfx,sc );
+    if ( brd->getGameOver() )
     {
-        sc.DrawGameOver( brd.getgridpos(),gfx );
-    }
+        sc.DrawGameOver( brd->getgridpos(),gfx );
+    }    
 }

@@ -9,6 +9,9 @@ Board::Board()
 	tiles.reserve( width * height );
 	AddTile();
 	AddTile();
+	//tiles.emplace_back( Tile( { 0,0 },0 ) );
+	//tiles.emplace_back( Tile( { 1,0 },0 ) );
+	//tiles.emplace_back( Tile( { 3,0 },1 ) );
 }
 
 void Board::Move( const Vec2i& dir )

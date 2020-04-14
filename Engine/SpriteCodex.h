@@ -11,6 +11,7 @@ public:
 	void DrawNumbers( const Vec2i& pos,const int num,Graphics& gfx ) const;
 	void DrawGrid( const Vec2i& gridpos,Graphics& gfx ) const;
 	void DrawGameOver( const Vec2i& gridpos,Graphics& gfx ) const;
+	Surface getSPGameOver() const;
 private:
 	std::vector<Surface> sprite;
 	Surface grid = Surface( L"Gitter.bmp" );

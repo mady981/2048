@@ -40,7 +40,10 @@ private:
 	MainWindow& wnd;
 	Graphics gfx;
     SpriteCodex sc;
-    Board brd;
+    Board* brd = new Board;
     Vec2i dir = { 0,0 };
-    bool ispressed = false;
+    bool keypressed = false;
+    bool mousepressed = false;
+    const RecI newgame = RecI( brd->getgridpos().x,brd->getgridpos().x + sc.getSPGameOver().getWidht(),
+        brd->getgridpos().y - 35,brd->getgridpos().y - 35 + sc.getSPGameOver().getHeight() );
 };
