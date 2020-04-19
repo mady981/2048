@@ -54,7 +54,7 @@ private:
     bool keypressed = false;
     bool mousepressed = false;
     const RecI* pNewGame = nullptr;
-    const RecI smallrec = RecI( gfx.ScreenWidth / 2 - ( ( 5 * 16 ) / 2 ),gfx.ScreenWidth / 2 + ( ( 5 * 16 ) / 2 ),190,210 + 18 );
-    const RecI mediumrec = RecI( gfx.ScreenWidth / 2 - ( ( 5 * 16 ) / 2 ),gfx.ScreenWidth / 2 + ( ( 6 * 16 ) / 2 ),290,310 + 18 );
-    const RecI largerec = RecI( gfx.ScreenWidth / 2 - ( ( 5 * 16 ) / 2 ),gfx.ScreenWidth / 2 + ( ( 5 * 16 ) / 2 ),390,410 + 18 );
+    const RecI smallrec = RecI( gfx.ScreenWidth / 2 - ( ( 6 * 16 ) / 2 ),gfx.ScreenWidth / 2 + ( ( 6 * 16 ) / 2 ),190,200 + 18 );
+    const RecI mediumrec = RecI( gfx.ScreenWidth / 2 - ( ( 7 * 16 ) / 2 ),gfx.ScreenWidth / 2 + ( ( 7 * 16 ) / 2 ),290,300 + 18 );
+    const RecI largerec = RecI( gfx.ScreenWidth / 2 - ( ( 6 * 16 ) / 2 ),gfx.ScreenWidth / 2 + ( ( 6 * 16 ) / 2 ),390,400 + 18 );
 };

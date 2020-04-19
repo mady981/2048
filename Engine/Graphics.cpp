@@ -327,6 +327,20 @@ void Graphics::DrawRec( const Vec2i& topleft,const Vec2i& bottemright,Color c )
 	}
 }
 
+void Graphics::DrawRecOutline( const RecI& src,int thikness,Color c )
+{
+	for ( int y = src.top - thikness; y < src.bottem + thikness; ++y )
+	{
+		for ( int x = src.left - thikness; x < src.right + thikness; ++x )
+		{
+			if ( !src.isOverlappingWith( Vec2i( x,y ) ) )
+			{
+				PutPixel( x,y,c );
+			}
+		}
+	}
+}
+
 Color Graphics::getPixel( int x,int y ) const
 {
 	assert( x >= 0 );

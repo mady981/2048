@@ -65,6 +65,7 @@ public:
 	{
 		DrawRec( topleft,Vec2i( topleft.x + width,topleft.y + height ),c );
 	}
+	void DrawRecOutline( const RecI& src,int thikness,Color c );
 	Color getPixel( int x,int y ) const;
 
 	void DrawSpriteNoChroma( int x,int y,const Surface& s )

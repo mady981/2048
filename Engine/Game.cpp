@@ -46,7 +46,7 @@ void Game::UpdateModel()
         //size selection
         if ( smallrec.isOverlappingWith( wnd.mouse.GetPos() ) )
         {
-            //drawoutline
+            gfx.DrawRecOutline( smallrec,5,Colors::Blue );
             if ( wnd.mouse.LeftIsPressed() )
             {
                 pBrd = new Board( 4,4 );
@@ -58,7 +58,7 @@ void Game::UpdateModel()
         }
         else if ( mediumrec.isOverlappingWith( wnd.mouse.GetPos() ) )
         {
-            //drawoutline
+            gfx.DrawRecOutline( mediumrec,5,Colors::Blue );
             if ( wnd.mouse.LeftIsPressed() )
             {
                 pBrd = new Board( 6,6 );
@@ -70,7 +70,7 @@ void Game::UpdateModel()
         }
         else if ( largerec.isOverlappingWith( wnd.mouse.GetPos() ) )
         {
-            //drawoutline
+            gfx.DrawRecOutline( largerec,5,Colors::Blue );
             if ( wnd.mouse.LeftIsPressed() )
             {
                 pBrd = new Board( 8,8 );
