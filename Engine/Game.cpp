@@ -63,15 +63,15 @@ void Game::UpdateModel()
     }
     if ( dir != Vec2i( 0,0 ) && !keypressed )
     {
-        brd->Move( dir );
+        pBrd->Move( dir );
         keypressed = true;
     }
     //new game button
     if ( newgame.isOverlappingWith( wnd.mouse.GetPos() ) && wnd.mouse.LeftIsPressed() && !mousepressed )
     {
         mousepressed = true;
-        delete brd;
-        brd = new Board;
+        delete pBrd;
+        pBrd = new Board;
     }
     const Mouse::Event e = wnd.mouse.Read();
     if ( e.GetType() == Mouse::Event::Type::LRelease )
@@ -82,9 +82,9 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-    brd->Draw( gfx,sc );
-    if ( brd->getGameOver() )
+    pBrd->Draw( gfx,sc );
+    if ( pBrd->getGameOver() )
     {
-        sc.DrawGameOver( brd->getgridpos(),gfx );
+        sc.DrawGameOver( pBrd->getgridpos(),gfx );
     }    
 }

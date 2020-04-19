@@ -56,7 +56,7 @@ private:
 	static constexpr int TileSize = 64;
 	static constexpr int width = 4;
 	static constexpr int height = 4;
-	const Vec2i gridpos = Vec2i( Graphics::ScreenWidth / 2 - 2 * TileSize,Graphics::ScreenHeight / 2 - 2 * TileSize );
+	const Vec2i gridpos = Vec2i( Graphics::ScreenWidth / 2 - ( width / 2 * TileSize ),Graphics::ScreenHeight / 2 - ( height / 2 * TileSize ) );
 	bool GameOver = false;
 private:
 	std::vector<Tile> tiles;
