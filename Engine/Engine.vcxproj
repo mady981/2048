@@ -154,6 +154,7 @@
     <ClInclude Include="SoundEffect.h" />
     <ClInclude Include="SpriteCodex.h" />
     <ClInclude Include="Surface.h" />
+    <ClInclude Include="Text.h" />
     <ClInclude Include="Vec2.h" />
   </ItemGroup>
   <ItemGroup>
@@ -170,6 +171,7 @@
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SpriteCodex.cpp" />
     <ClCompile Include="Surface.cpp" />
+    <ClCompile Include="Text.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="FramebufferPS.hlsl">
@@ -246,6 +248,7 @@
     <Image Include="64.bmp" />
     <Image Include="8.bmp" />
     <Image Include="Chili.ico" />
+    <Image Include="FontSheet16x18.bmp" />
     <Image Include="GameOver.bmp" />
     <Image Include="GameOver2.bmp" />
     <Image Include="Gitter.bmp" />

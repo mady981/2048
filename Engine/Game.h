@@ -26,6 +26,8 @@
 #include "Board.h"
 #include <random>
 
+#include "Text.h"
+
 class Game
 {
 public:
@@ -40,6 +42,7 @@ private:
 	MainWindow& wnd;
 	Graphics gfx;
     SpriteCodex sc;
+    Text text;
     Board* pBrd = new Board;
     Vec2i dir = { 0,0 };
     bool keypressed = false;
