@@ -17,10 +17,14 @@ void SpriteCodex::DrawNumbers( const Vec2i& pos,const int num,Graphics& gfx ) co
 	gfx.DrawSprite( pos.x,pos.y,sprite[num] );
 }
 
-void SpriteCodex::DrawGrid( const Vec2i& gridpos,Graphics& gfx ) const
+void SpriteCodex::DrawGrid( const Vec2i& pos,Graphics& gfx ) const
 {
-	gfx.DrawSpriteNoChroma( gridpos.x,gridpos.y,grid );
-	gfx.DrawSprite( gridpos.x,gridpos.y - 35,newgame );
+	gfx.DrawSpriteNoChroma( pos.x,pos.y,grid );
+}
+
+void SpriteCodex::DrawNewGame( const Vec2i& pos,Graphics& gfx ) const
+{
+	gfx.DrawSprite( pos.x,pos.y,newgame );
 }
 
 void SpriteCodex::DrawGameOver( const Vec2i& gridpos,Graphics& gfx ) const
@@ -30,5 +34,10 @@ void SpriteCodex::DrawGameOver( const Vec2i& gridpos,Graphics& gfx ) const
 
 Surface SpriteCodex::getSPGameOver() const
 {
-	return gameover;
+	return Surface( gameover );
+}
+
+Surface SpriteCodex::getSPGrid() const
+{
+	return Surface( grid );
 }

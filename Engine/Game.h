@@ -29,6 +29,12 @@
 
 class Game
 {
+private:
+    enum class State
+    {
+        Menue,
+        inGame
+    };
 public:
 	Game( class MainWindow& wnd );
 	Game( const Game& ) = delete;
@@ -42,10 +48,13 @@ private:
 	Graphics gfx;
     SpriteCodex sc;
     Text text;
-    Board* pBrd = new Board;
+    Board* pBrd = nullptr;
+    State currState = State::Menue;
     Vec2i dir = { 0,0 };
     bool keypressed = false;
     bool mousepressed = false;
-    const RecI newgame = RecI( pBrd->getgridpos().x,pBrd->getgridpos().x + sc.getSPGameOver().getWidht(),
-        pBrd->getgridpos().y - 35,pBrd->getgridpos().y - 35 + sc.getSPGameOver().getHeight() );
+    const RecI* pNewGame = nullptr;
+    const RecI smallrec = RecI( gfx.ScreenWidth / 2 - ( ( 5 * 16 ) / 2 ),gfx.ScreenWidth / 2 + ( ( 5 * 16 ) / 2 ),190,210 + 18 );
+    const RecI mediumrec = RecI( gfx.ScreenWidth / 2 - ( ( 5 * 16 ) / 2 ),gfx.ScreenWidth / 2 + ( ( 6 * 16 ) / 2 ),290,310 + 18 );
+    const RecI largerec = RecI( gfx.ScreenWidth / 2 - ( ( 5 * 16 ) / 2 ),gfx.ScreenWidth / 2 + ( ( 5 * 16 ) / 2 ),390,410 + 18 );
 };

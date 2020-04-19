@@ -1,8 +1,9 @@
 #include "Text.h"
 
-Text::Text( Surface& font )
+Text::Text( Surface& font,Color chroma )
 	:
 	font( font ),
+	chroma( chroma ),
 	CharWidth( font.getWidht() / 32 ),
 	CharHeight( font.getHeight() / 4 )
 {
@@ -10,9 +11,11 @@ Text::Text( Surface& font )
 
 void Text::DrawText( const std::string& text,const Vec2i& pos,Graphics& gfx ) const
 {
+	int currletter = 0;
 	for ( auto c : text )
 	{
-		gfx.DrawSprite( pos.x + c * CharWidth,pos.y + c * CharHeight,CharMaping( c ),font );
+		gfx.DrawSprite( pos.x + currletter * CharWidth,pos.y,CharMaping( c ),font,chroma );
+		++currletter;
 	}
 }
 

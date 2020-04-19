@@ -2,8 +2,10 @@
 #include <iterator>
 #include <assert.h>
 
-Board::Board()
+Board::Board( int width,int height)
 	:
+	width( width ),
+	height( height ),
 	rng( std::random_device()() )
 {
 	tiles.reserve( width * height );
@@ -99,7 +101,14 @@ void Board::Draw( Graphics& gfx,SpriteCodex& sc ) const
 
 void Board::DrawBoarder( Graphics& gfx,SpriteCodex& sc ) const
 {
-	sc.DrawGrid( gridpos,gfx );
+	for ( int sy = 0; sy < height; ++sy )
+	{
+		for ( int sx = 0; sx < width; ++sx )
+		{
+			sc.DrawGrid( Vec2i( sx * sc.getSPGrid().getWidht() + gridpos.x,sy * sc.getSPGrid().getHeight() + gridpos.y ),gfx );
+		}
+	}
+	sc.DrawNewGame( Vec2i( gridpos.x,gridpos.y - 35 ),gfx );
 }
 
 void Board::AddTile()

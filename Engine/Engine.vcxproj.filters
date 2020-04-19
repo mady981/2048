@@ -155,9 +155,6 @@
     <Image Include="32.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Gitter.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="128.bmp">
       <Filter>Resource Files</Filter>
     </Image>
@@ -177,6 +174,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="FontSheet16x18.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Grid.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

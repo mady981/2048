@@ -24,7 +24,7 @@ private:
 		int value;
 	};
 public:
-	Board();
+	Board( int width,int height );
 	void Move( const Vec2i& dir );
 	void Draw( Graphics& gfx,SpriteCodex& sc ) const;
 private:
@@ -54,8 +54,8 @@ public:
 	}
 private:
 	static constexpr int TileSize = 64;
-	static constexpr int width = 4;
-	static constexpr int height = 4;
+	const int width;
+	const int height;
 	const Vec2i gridpos = Vec2i( Graphics::ScreenWidth / 2 - ( width / 2 * TileSize ),Graphics::ScreenHeight / 2 - ( height / 2 * TileSize ) );
 	bool GameOver = false;
 private:

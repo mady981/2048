@@ -8,12 +8,13 @@
 class Text
 {
 public:
-	Text( Surface& font );
+	Text( Surface& font,Color chroma = Colors::Black );
 	void DrawText( const std::string& text,const Vec2i& pos,Graphics& gfx ) const;
 private:
 	RecI CharMaping( char c ) const;
 private:
 	Surface font;
+	const Color chroma;
 	const char CharHeight;
 	const char CharWidth;
 };

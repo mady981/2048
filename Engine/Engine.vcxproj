@@ -251,7 +251,7 @@
     <Image Include="FontSheet16x18.bmp" />
     <Image Include="GameOver.bmp" />
     <Image Include="GameOver2.bmp" />
-    <Image Include="Gitter.bmp" />
+    <Image Include="Grid.bmp" />
     <Image Include="NewGame.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

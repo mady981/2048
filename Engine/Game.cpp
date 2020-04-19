@@ -21,6 +21,7 @@
 #include "MainWindow.h"
 #include "Game.h"
 #include <assert.h>
+#include <string>
 
 Game::Game( MainWindow& wnd )
     :
@@ -40,39 +41,83 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-    //dir imputs
-    if ( wnd.kbd.KeyIsPressed( VK_UP ) )
+    if ( currState == State::Menue )
     {
-        dir = { 0,-1 };
-    }
-    else if ( wnd.kbd.KeyIsPressed( VK_DOWN ) )
-    {
-        dir = { 0,1 };
-    }
-    else if ( wnd.kbd.KeyIsPressed( VK_LEFT ) )
-    {
-        dir = { -1,0 };
-    }
-    else if ( wnd.kbd.KeyIsPressed( VK_RIGHT ) )
-    {
-        dir = { 1,0 };
+        //size selection
+        if ( smallrec.isOverlappingWith( wnd.mouse.GetPos() ) )
+        {
+            //drawoutline
+            if ( wnd.mouse.LeftIsPressed() )
+            {
+                pBrd = new Board( 4,4 );
+                currState = State::inGame;
+                pNewGame = new RecI( pBrd->getgridpos().x,pBrd->getgridpos().x + sc.getSPGameOver().getWidht(),
+                    pBrd->getgridpos().y - 35,pBrd->getgridpos().y - 35 + sc.getSPGameOver().getHeight() );
+                mousepressed = true;
+            }
+        }
+        else if ( mediumrec.isOverlappingWith( wnd.mouse.GetPos() ) )
+        {
+            //drawoutline
+            if ( wnd.mouse.LeftIsPressed() )
+            {
+                pBrd = new Board( 6,6 );
+                currState = State::inGame;
+                pNewGame = new RecI( pBrd->getgridpos().x,pBrd->getgridpos().x + sc.getSPGameOver().getWidht(),
+                    pBrd->getgridpos().y - 35,pBrd->getgridpos().y - 35 + sc.getSPGameOver().getHeight() );
+                mousepressed = true;
+            }
+        }
+        else if ( largerec.isOverlappingWith( wnd.mouse.GetPos() ) )
+        {
+            //drawoutline
+            if ( wnd.mouse.LeftIsPressed() )
+            {
+                pBrd = new Board( 8,8 );
+                currState = State::inGame;
+                pNewGame = new RecI( pBrd->getgridpos().x,pBrd->getgridpos().x + sc.getSPGameOver().getWidht(),
+                    pBrd->getgridpos().y - 35,pBrd->getgridpos().y - 35 + sc.getSPGameOver().getHeight() );
+                mousepressed = true;
+            }
+        }
     }
     else
     {
-        dir = { 0,0 };
-        keypressed = false;
-    }
-    if ( dir != Vec2i( 0,0 ) && !keypressed )
-    {
-        pBrd->Move( dir );
-        keypressed = true;
-    }
-    //new game button
-    if ( newgame.isOverlappingWith( wnd.mouse.GetPos() ) && wnd.mouse.LeftIsPressed() && !mousepressed )
-    {
-        mousepressed = true;
-        delete pBrd;
-        pBrd = new Board;
+        //dir imputs
+        if ( wnd.kbd.KeyIsPressed( VK_UP ) )
+        {
+            dir = { 0,-1 };
+        }
+        else if ( wnd.kbd.KeyIsPressed( VK_DOWN ) )
+        {
+            dir = { 0,1 };
+        }
+        else if ( wnd.kbd.KeyIsPressed( VK_LEFT ) )
+        {
+            dir = { -1,0 };
+        }
+        else if ( wnd.kbd.KeyIsPressed( VK_RIGHT ) )
+        {
+            dir = { 1,0 };
+        }
+        else
+        {
+            dir = { 0,0 };
+            keypressed = false;
+        }
+        if ( dir != Vec2i( 0,0 ) && !keypressed )
+        {
+            pBrd->Move( dir );
+            keypressed = true;
+        }
+        //new game button
+        if ( pNewGame->isOverlappingWith( wnd.mouse.GetPos() ) && wnd.mouse.LeftIsPressed() && !mousepressed )
+        {
+            mousepressed = true;
+            delete pBrd;
+            delete pNewGame;
+            currState = State::Menue;
+        }
     }
     const Mouse::Event e = wnd.mouse.Read();
     if ( e.GetType() == Mouse::Event::Type::LRelease )
@@ -83,9 +128,18 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-    pBrd->Draw( gfx,sc );
-    if ( pBrd->getGameOver() )
+    if ( currState == State::Menue )
     {
-        sc.DrawGameOver( pBrd->getgridpos(),gfx );
+        text.DrawText( std::string( "Small" ),Vec2i( gfx.ScreenWidth / 2 - ( ( 5 * 16 ) / 2 ),200 ),gfx );
+        text.DrawText( std::string( "Medium" ),Vec2i( gfx.ScreenWidth / 2 - ( ( 6 * 16 ) / 2 ),300 ),gfx );
+        text.DrawText( std::string( "Large" ),Vec2i( gfx.ScreenWidth / 2 - ( ( 5 * 16 ) / 2 ),400 ),gfx );
+    }
+    else
+    {
+        pBrd->Draw( gfx,sc );
+        if ( pBrd->getGameOver() )
+        {
+            sc.DrawGameOver( pBrd->getgridpos(),gfx );
+        }
     }
 }
