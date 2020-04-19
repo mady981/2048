@@ -24,9 +24,8 @@
 #include "Mouse.h"
 #include "Graphics.h"
 #include "Board.h"
-#include <random>
-
 #include "Text.h"
+#include <random>
 
 class Game
 {

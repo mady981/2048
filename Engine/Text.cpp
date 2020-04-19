@@ -3,8 +3,8 @@
 Text::Text( Surface& font )
 	:
 	font( font ),
-	CharWidth( font.getWidht / 32 ),
-	CharHeight( font.getHeight / 4 )
+	CharWidth( font.getWidht() / 32 ),
+	CharHeight( font.getHeight() / 4 )
 {
 }
 

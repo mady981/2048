@@ -25,7 +25,8 @@
 Game::Game( MainWindow& wnd )
     :
     wnd( wnd ),
-    gfx( wnd )
+    gfx( wnd ),
+    text( Surface( L"FontSheet16x18.bmp"))
 {
 }
 
