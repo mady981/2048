@@ -1,29 +1,24 @@
 #include "Text.h"
 
-Text::Text( std::wstring& text,Surface& font,unsigned char CharWidth,unsigned char CharHeight )
+Text::Text( Surface& font )
 	:
-	text( text ),
 	font( font ),
-	CharWidth( CharWidth ),
-	CharHeight( CharHeight )
+	CharWidth( font.getWidht / 32 ),
+	CharHeight( font.getHeight / 4 )
 {
-	CharMaping();
 }
 
-void Text::DrawText( const Vec2i& pos,Graphics& gfx ) const
+void Text::DrawText( const std::string& text,const Vec2i& pos,Graphics& gfx ) const
 {
-	for ( int n = 0; n < car.size(); ++n )
+	for ( auto c : text )
 	{
-		gfx.DrawSprite( pos.x + n * CharWidth,pos.y,car[n],font );
+		gfx.DrawSprite( pos.x + c * CharWidth,pos.y + c * CharHeight,CharMaping( c ),font );
 	}
 }
 
-void Text::CharMaping()
+RecI Text::CharMaping( char c ) const
 {
-	for ( unsigned char l = 0; l <= text.length(); ++l )
-	{
-		unsigned char y = ( unsigned char )text[l] / ( font.getWidht() / CharWidth );
-		unsigned char x = ( unsigned char )text[l] % ( font.getWidht() / CharWidth );
-		car.push_back( RecI( x * CharWidth,( x + 1 ) * CharWidth,y * CharHeight,( y + 1 ) * CharHeight ) );
-	}
+	const char y = c / ( font.getWidht() / CharWidth );
+	const char x = c % ( font.getWidht() / CharWidth );
+	return RecI( x * CharWidth,( x + 1 ) * CharWidth,y * CharHeight,( y + 1 ) * CharHeight );
 }

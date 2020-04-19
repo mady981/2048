@@ -25,8 +25,7 @@
 Game::Game( MainWindow& wnd )
     :
     wnd( wnd ),
-    gfx( wnd ),
-    text( std::wstring( L"Hallo a b 315!" ),Surface( L"FontSheet16x18.bmp" ),16,18 )
+    gfx( wnd )
 {
 }
 
@@ -88,5 +87,4 @@ void Game::ComposeFrame()
     {
         sc.DrawGameOver( pBrd->getgridpos(),gfx );
     }
-    text.DrawText( Vec2i( 20,50 ),gfx );
 }

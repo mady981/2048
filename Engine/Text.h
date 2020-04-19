@@ -3,20 +3,17 @@
 #include "Rec.h"
 #include "Vec2.h"
 #include "Surface.h"
-#include <vector>
 #include <string>
 
 class Text
 {
 public:
-	Text( std::wstring& text,Surface& font,unsigned char CharWidth,unsigned char CharHeight );
-	void DrawText( const Vec2i& pos,Graphics& gfx ) const;
+	Text( Surface& font );
+	void DrawText( const std::string& text,const Vec2i& pos,Graphics& gfx ) const;
 private:
-	void CharMaping();
+	RecI CharMaping( char c ) const;
 private:
-	std::vector<RecI> car;
-	std::wstring text;
 	Surface font;
-	unsigned char CharHeight;
-	unsigned char CharWidth;
+	const char CharHeight;
+	const char CharWidth;
 };
